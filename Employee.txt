@@ -1,0 +1,213 @@
+mysql> create database empdb;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use empdb;
+Database changed
+
+mysql> create table employee(empid int primary key,firstname varchar(40),lastname varchar(10),email varchar(40),phonenumber bigint unique,hiredate date,jobid int unique);
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> desc employee;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| empid       | int         | NO   | PRI | NULL    |       |
+| firstname   | varchar(40) | YES  |     | NULL    |       |
+| lastname    | varchar(10) | YES  |     | NULL    |       |
+| email       | varchar(40) | YES  |     | NULL    |       |
+| phonenumber | bigint      | YES  | UNI | NULL    |       |
+| hiredate    | date        | YES  |     | NULL    |       |
+| jobid       | int         | YES  | UNI | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> insert into employee values(1232,'Ravindhran','S','ravindhran2003@gmail.com',9945234844,'2003-08-04',568934);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(1233,'Sundar','p','sundar@gmail.com',9345689844,'1998-09-04',568834);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(1234,'Renuka','S','srenuka@gmail.com',9334689844,'1998-11-17',568734);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(1235,'Pragathi','D','pragathi@gmail.com',9356789844,'1998-11-19',569734);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(1236,'Shanmugam','S','shanmugam@gmail.com',9356979844,'1969-04-06',569934);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(1237,'Pramiladevi','S','pramila@gmail.com',9356979454,'1829-10-15',568924);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(1238,'Selva','S','selva@gmail.com',9786979454,'1995-11-05',568974);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(1230,'Nilani','K','nilani@gmail.com',9786990454,'1996-07-05',569974);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(12310,'Kalai','S','kalai@gmail.com',9786967454,'1992-02-05',569984);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select  * from employee;
++-------+-------------+----------+--------------------------+-------------+------------+--------+
+| empid | firstname   | lastname | email                    | phonenumber | hiredate   | jobid  |
++-------+-------------+----------+--------------------------+-------------+------------+--------+
+|  1230 | Nilani      | K        | nilani@gmail.com         |  9786990454 | 1996-07-05 | 569974 |
+|  1231 | Vinothini   | S        | vinothinis@gmail.com     |  9965686844 | 1999-11-23 | 568932 |
+|  1232 | Ravindhran  | S        | ravindhran2003@gmail.com |  9945234844 | 2003-08-04 | 568934 |
+|  1233 | Sundar      | p        | sundar@gmail.com         |  9345689844 | 1998-09-04 | 568834 |
+|  1234 | Renuka      | S        | srenuka@gmail.com        |  9334689844 | 1998-11-17 | 568734 |
+|  1235 | Pragathi    | D        | pragathi@gmail.com       |  9356789844 | 1998-11-19 | 569734 |
+|  1236 | Shanmugam   | S        | shanmugam@gmail.com      |  9356979844 | 1969-04-06 | 569934 |
+|  1237 | Pramiladevi | S        | pramila@gmail.com        |  9356979454 | 1829-10-15 | 568924 |
+|  1238 | Selva       | S        | selva@gmail.com          |  9786979454 | 1995-11-05 | 568974 |
+| 12310 | Kalai       | S        | kalai@gmail.com          |  9786967454 | 1992-02-05 | 569984 |
++-------+-------------+----------+--------------------------+-------------+------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> alter table employee add salary int;
+Query OK, 0 rows affected (0.29 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select  * from employee;
++-------+-------------+----------+--------------------------+-------------+------------+--------+--------+
+| empid | firstname   | lastname | email                    | phonenumber | hiredate   | jobid  | salary |
++-------+-------------+----------+--------------------------+-------------+------------+--------+--------+
+|  1230 | Nilani      | K        | nilani@gmail.com         |  9786990454 | 1996-07-05 | 569974 |   NULL |
+|  1231 | Vinothini   | S        | vinothinis@gmail.com     |  9965686844 | 1999-11-23 | 568932 |   NULL |
+|  1232 | Ravindhran  | S        | ravindhran2003@gmail.com |  9945234844 | 2003-08-04 | 568934 |   NULL |
+|  1233 | Sundar      | p        | sundar@gmail.com         |  9345689844 | 1998-09-04 | 568834 |   NULL |
+|  1234 | Renuka      | S        | srenuka@gmail.com        |  9334689844 | 1998-11-17 | 568734 |   NULL |
+|  1235 | Pragathi    | D        | pragathi@gmail.com       |  9356789844 | 1998-11-19 | 569734 |   NULL |
+|  1236 | Shanmugam   | S        | shanmugam@gmail.com      |  9356979844 | 1969-04-06 | 569934 |   NULL |
+|  1237 | Pramiladevi | S        | pramila@gmail.com        |  9356979454 | 1829-10-15 | 568924 |   NULL |
+|  1238 | Selva       | S        | selva@gmail.com          |  9786979454 | 1995-11-05 | 568974 |   NULL |
+| 12310 | Kalai       | S        | kalai@gmail.com          |  9786967454 | 1992-02-05 | 569984 |   NULL |
++-------+-------------+----------+--------------------------+-------------+------------+--------+--------+
+10 rows in set (0.00 sec)
+
+mysql> update employee set salary=32000 where empid=1230;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set salary=50000 where empid=1231;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set salary=100000 where empid=1232;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set salary=25000 where empid=1233;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set salary=24000 where empid=1234;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set salary=35000 where empid=1235;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set salary=35670 where empid=1236;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set salary=32000 where empid=1238;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set salary=52000 where empid=12310;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select  * from employee;
++-------+-------------+----------+--------------------------+-------------+------------+--------+--------+
+| empid | firstname   | lastname | email                    | phonenumber | hiredate   | jobid  | salary |
++-------+-------------+----------+--------------------------+-------------+------------+--------+--------+
+|  1230 | Nilani      | K        | nilani@gmail.com         |  9786990454 | 1996-07-05 | 569974 |  32000 |
+|  1231 | Vinothini   | S        | vinothinis@gmail.com     |  9965686844 | 1999-11-23 | 568932 |  50000 |
+|  1232 | Ravindhran  | S        | ravindhran2003@gmail.com |  9945234844 | 2003-08-04 | 568934 | 100000 |
+|  1233 | Sundar      | p        | sundar@gmail.com         |  9345689844 | 1998-09-04 | 568834 |  25000 |
+|  1234 | Renuka      | S        | srenuka@gmail.com        |  9334689844 | 1998-11-17 | 568734 |  24000 |
+|  1235 | Pragathi    | D        | pragathi@gmail.com       |  9356789844 | 1998-11-19 | 569734 |  35000 |
+|  1236 | Shanmugam   | S        | shanmugam@gmail.com      |  9356979844 | 1969-04-06 | 569934 |  35670 |
+|  1237 | Pramiladevi | S        | pramila@gmail.com        |  9356979454 | 1829-10-15 | 568924 |   NULL |
+|  1238 | Selva       | S        | selva@gmail.com          |  9786979454 | 1995-11-05 | 568974 |  32000 |
+| 12310 | Kalai       | S        | kalai@gmail.com          |  9786967454 | 1992-02-05 | 569984 |  52000 |
++-------+-------------+----------+--------------------------+-------------+------------+--------+--------+
+10 rows in set (0.00 sec)
+
+mysql> update employee set salary=62000 where empid=1237;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select firstname,lastname from employee where empid in(select empid from employee where salary >(select salary from employee where empid=1235));
++-------------+----------+
+| firstname   | lastname |
++-------------+----------+
+| Vinothini   | S        |
+| Ravindhran  | S        |
+| Shanmugam   | S        |
+| Pramiladevi | S        |
+| Kalai       | S        |
++-------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select firstname,lastname from employee where empid in(select empid from employee where salary >(select salary from employee where empid=1235));
++-------------+----------+
+| firstname   | lastname |
++-------------+----------+
+| Vinothini   | S        |
+| Ravindhran  | S        |
+| Shanmugam   | S        |
+| Pramiladevi | S        |
+| Kalai       | S        |
++-------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM employee WHERE empid IN (1230,1236,1237);
++-------+-------------+----------+---------------------+-------------+------------+--------+--------+
+| empid | firstname   | lastname | email               | phonenumber | hiredate   | jobid  | salary |
++-------+-------------+----------+---------------------+-------------+------------+--------+--------+
+|  1230 | Nilani      | K        | nilani@gmail.com    |  9786990454 | 1996-07-05 | 569974 |  32000 |
+|  1236 | Shanmugam   | S        | shanmugam@gmail.com |  9356979844 | 1969-04-06 | 569934 |  35670 |
+|  1237 | Pramiladevi | S        | pramila@gmail.com   |  9356979454 | 1829-10-15 | 568924 |  62000 |
++-------+-------------+----------+---------------------+-------------+------------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM employees WHERE salary BETWEEN 10000 and 30000;
+ERROR 1146 (42S02): Table 'empdb.employees' doesn't exist
+mysql> SELECT * FROM employee WHERE salary BETWEEN 10000 and 30000;
++-------+-----------+----------+-------------------+-------------+------------+--------+--------+
+| empid | firstname | lastname | email             | phonenumber | hiredate   | jobid  | salary |
++-------+-----------+----------+-------------------+-------------+------------+--------+--------+
+|  1233 | Sundar    | p        | sundar@gmail.com  |  9345689844 | 1998-09-04 | 568834 |  25000 |
+|  1234 | Renuka    | S        | srenuka@gmail.com |  9334689844 | 1998-11-17 | 568734 |  24000 |
++-------+-----------+----------+-------------------+-------------+------------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM employees WHERE salary BETWEEN  (SELECT MIN(salary) FROM employee) AND 25000;
+ERROR 1146 (42S02): Table 'empdb.employees' doesn't exist
+mysql> SELECT * FROM employee WHERE salary BETWEEN  (SELECT MIN(salary) FROM employee) AND 25000;
++-------+-----------+----------+-------------------+-------------+------------+--------+--------+
+| empid | firstname | lastname | email             | phonenumber | hiredate   | jobid  | salary |
++-------+-----------+----------+-------------------+-------------+------------+--------+--------+
+|  1233 | Sundar    | p        | sundar@gmail.com  |  9345689844 | 1998-09-04 | 568834 |  25000 |
+|  1234 | Renuka    | S        | srenuka@gmail.com |  9334689844 | 1998-11-17 | 568734 |  24000 |
++-------+-----------+----------+-------------------+-------------+------------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT empid, firstname,lastname  FROM employee  WHERE salary >  ( SELECT AVG(salary)  FROM employee);
++-------+-------------+----------+
+| empid | firstname   | lastname |
++-------+-------------+----------+
+|  1231 | Vinothini   | S        |
+|  1232 | Ravindhran  | S        |
+|  1237 | Pramiladevi | S        |
+| 12310 | Kalai       | S        |
++-------+-------------+----------+
+4 rows in set (0.00 sec)
+
+mysql>

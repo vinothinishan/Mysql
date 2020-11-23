@@ -1,0 +1,1602 @@
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 42
+Server version: 8.0.20 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database onlinefoodorderingdb;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use  onlinefoodorderingdb;
+Database changed
+mysql> create table restaurants(resid int primary key AUTO_INCREMENT,resname varchar(40),resadd varchar(40),rescity varchar(40),contactno bigint );
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc restaurants;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| resid     | int         | NO   | PRI | NULL    | auto_increment |
+| resname   | varchar(40) | YES  |     | NULL    |                |
+| resadd    | varchar(40) | YES  |     | NULL    |                |
+| rescity   | varchar(40) | YES  |     | NULL    |                |
+| contactno | bigint      | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> create table rmenuitems (menuid int primary key AUTO_INCREMENT,menuname varchar(40), menutype varchar(40), menucategory varchar(40),menuprice int, menudesc varchar(),restid int,foreign key (restid) references restaurants(resid));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '),restid int,foreign key (restid) references restaurants(resid))' at line 1
+mysql> create table rmenuitems (menuid int primary key AUTO_INCREMENT,menuname varchar(40), menutype varchar(40), menucategory varchar(40),menuprice int, menudesc varchar(40),restid int,foreign key (restid) references restaurants(resid));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table customers (custid int,custname varchar(40),custcity varchar(40),custcity varchar(40),custdob date,custgender varchar(40),custpassword varchar(40));
+ERROR 1060 (42S21): Duplicate column name 'custcity'
+mysql> create table customers (custid int,custname varchar(40),custcity varchar(40),custdob date,custgender varchar(40),custpassword varchar(40));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table order(orderid primary key AUTO_INCREMENT,custid int,orderdate date,deliveryadd varchar(40),orderstatus varchar(40),foreign key(custid) references customers(custid));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order(orderid primary key AUTO_INCREMENT,custid int,orderdate date,deliveryadd v' at line 1
+mysql> create table order(orderid primary key AUTO_INCREMENT,custid int,orderdate date,deliveryadd varchar(40),orderstatus varchar(40),foreign key (custid) references customers(custid));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order(orderid primary key AUTO_INCREMENT,custid int,orderdate date,deliveryadd v' at line 1
+mysql> create table order(orderid primary key AUTO_INCREMENT,custid int,orderdate date,deliveryadd varchar(30),orderstatus varchar(40),foreign key (custid) references customers (custid));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order(orderid primary key AUTO_INCREMENT,custid int,orderdate date,deliveryadd v' at line 1
+mysql> create table order(orderid int primary key AUTO_INCREMENT,custid int,orderdate date,deliveryadd varchar(40),orderstatus varchar(40),foreign key (custid) references customers(custid));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order(orderid int primary key AUTO_INCREMENT,custid int,orderdate date,deliverya' at line 1
+mysql> create table order(orderid int primary key AUTO_INCREMENT,custid int,orderdate date,deliveryadd varchar(40),orderstatus varchar(40),foreign key (custid) references customers(custid));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order(orderid int primary key AUTO_INCREMENT,custid int,orderdate date,deliverya' at line 1
+mysql> create table order(orderid int primary key AUTO_INCREMENT, orderdate date,deliveryadd varchar(40),deliveryadd varchar(40), orderstatus varchar(40),custid int,foreign key(custid) references(custid));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order(orderid int primary key AUTO_INCREMENT, orderdate date,deliveryadd varchar' at line 1
+mysql> create table order(orderid int primary key AUTO_INCREMENT, orderdate date,deliveryadd varchar(40),deliveryadd varchar(40), orderstatus varchar(40),custid int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order(orderid int primary key AUTO_INCREMENT, orderdate date,deliveryadd varchar' at line 1
+mysql> create table order(orderid int primary key AUTO_INCREMENT, orderdate date,deliveryadd varchar(40), orderstatus varchar(40),custid int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order(orderid int primary key AUTO_INCREMENT, orderdate date,deliveryadd varchar' at line 1
+mysql> create table order(orderid int primary key  AUTO_INCREMENT, orderdate date,deliveryadd varchar(40), orderstatus varchar(40),custid int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order(orderid int primary key  AUTO_INCREMENT, orderdate date,deliveryadd varcha' at line 1
+mysql> create table orders (orderid int primary key AUTO_INCREMENT, deliveryadd varchar(40), orderstatus varchar(40), custid int, foreign key (custid) references customers(custid));
+ERROR 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'orders_ibfk_1' in the referenced table 'customers'
+mysql> create table orders (orderid int primary key AUTO_INCREMENT, deliveryadd varchar(40), orderstatus varchar(40), custid int, foreign key (custid) references customers(custid));
+ERROR 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'orders_ibfk_1' in the referenced table 'customers'
+mysql> create table orders (orderid int primary key AUTO_INCREMENT, deliveryadd varchar(40), orderstatus varchar(40), custid int);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table ordermenus (menuqty int,menuprice int, orderid int,menuid int, foreign key(orderid) references orders(orderid));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> alter table ordermenus add foreign key (menuid) references rmenuitems(menuid);
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table orders add foreign key (custid) references customers(custid);
+ERROR 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'orders_ibfk_1' in the referenced table 'customers'
+mysql>  desc restaurants;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| resid     | int         | NO   | PRI | NULL    | auto_increment |
+| resname   | varchar(40) | YES  |     | NULL    |                |
+| resadd    | varchar(40) | YES  |     | NULL    |                |
+| rescity   | varchar(40) | YES  |     | NULL    |                |
+| contactno | bigint      | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> desc customers;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| custid       | int         | YES  |     | NULL    |       |
+| custname     | varchar(40) | YES  |     | NULL    |       |
+| custcity     | varchar(40) | YES  |     | NULL    |       |
+| custdob      | date        | YES  |     | NULL    |       |
+| custgender   | varchar(40) | YES  |     | NULL    |       |
+| custpassword | varchar(40) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> desc rmenuitemsdesc;
+ERROR 1146 (42S02): Table 'onlinefoodorderingdb.rmenuitemsdesc' doesn't exist
+mysql> desc rmenuitems;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| menuid       | int         | NO   | PRI | NULL    | auto_increment |
+| menuname     | varchar(40) | YES  |     | NULL    |                |
+| menutype     | varchar(40) | YES  |     | NULL    |                |
+| menucategory | varchar(40) | YES  |     | NULL    |                |
+| menuprice    | int         | YES  |     | NULL    |                |
+| menudesc     | varchar(40) | YES  |     | NULL    |                |
+| restid       | int         | YES  | MUL | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> desc orders;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| orderid     | int         | NO   | PRI | NULL    | auto_increment |
+| deliveryadd | varchar(40) | YES  |     | NULL    |                |
+| orderstatus | varchar(40) | YES  |     | NULL    |                |
+| custid      | int         | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> desc ordersmenus;
+ERROR 1146 (42S02): Table 'onlinefoodorderingdb.ordersmenus' doesn't exist
+mysql> desc ordermenus;
++-----------+------+------+-----+---------+-------+
+| Field     | Type | Null | Key | Default | Extra |
++-----------+------+------+-----+---------+-------+
+| menuqty   | int  | YES  |     | NULL    |       |
+| menuprice | int  | YES  |     | NULL    |       |
+| orderid   | int  | YES  | MUL | NULL    |       |
+| menuid    | int  | YES  | MUL | NULL    |       |
++-----------+------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into restaurants values (1231,'VinoRes','30,crossstreet','chennai',989898);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into restaurants values (1232,'pkRes','121,gandhistreet','bangalore',999988);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into restaurants values (1234,'pramiRes','31/21,rajivstreet','coimbatore',990988);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into restaurants values (1235,'pramiRes','33/21,rajivs 1st street','coimbatore',990088);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into restaurants values (1236,'shanRes','33/21,rajivs 2st street','coimbatore',900088);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into restaurants values (1237,'ravisres','1,musjid 2st street','bangalore',7800088);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into rmenuitems values(121,'idli','breakfast','veg',5,'indian delicious idli','1231');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into rmenuitems values(122,'dosa','breakfast','veg',25,'indian delicious dosa','1232');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into rmenuitems values(123,'briyani','lunch','veg',100,'it is available in many types','1243');
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`onlinefoodorderingdb`.`rmenuitems`, CONSTRAINT `rmenuitems_ibfk_1` FOREIGN KEY (`restid`) REFERENCES `restaurants` (`resid`))
+mysql> insert into rmenuitems values(123,'briyani','lunch','veg',100,'it is available in many types','1234');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into rmenuitems values(124,'chickenbriyani','lunch','veg',100,'it is available in many types','1235');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into rmenuitems values(125,'chapathi','breakfast','veg',50,'it is available in many types','1236');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into rmenuitems values(126,'poori','breakfast','veg',75,'it is available in many types','1237');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers values(3451,'vinothini','erode','1999-11-23','F','vinothini');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers values(3452,'ravi','chennai','2003-08-04','m','ravi');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers values(3452,'rani','coimbatore','1989-05-06','f','rani');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> delete from customers where cusid=3452;
+ERROR 1054 (42S22): Unknown column 'cusid' in 'where clause'
+mysql> delete from customers where custid=3452;
+Query OK, 2 rows affected (0.01 sec)
+
+mysql> insert into customers values(3452,'ravi','chennai','2003-08-04','m','ravi');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers values(3453,'rani','coimbatore','1989-05-06','f','rani');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders values(567,'erode','delivered',3451);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders values(568,'chennai','not delivered',3452);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders values(569,'coimbatore','not delivered',3453);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into ordersmenus values(2,150,567,121);
+ERROR 1146 (42S02): Table 'onlinefoodorderingdb.ordersmenus' doesn't exist
+mysql> insert into ordermenus values(2,150,567,121);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into ordermenus values(5,300,568,122);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into ordermenus values(10,1500,569,123);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select* from customers;
++--------+-----------+------------+------------+------------+--------------+
+| custid | custname  | custcity   | custdob    | custgender | custpassword |
++--------+-----------+------------+------------+------------+--------------+
+|   3451 | vinothini | erode      | 1999-11-23 | F          | vinothini    |
+|   3452 | ravi      | chennai    | 2003-08-04 | m          | ravi         |
+|   3453 | rani      | coimbatore | 1989-05-06 | f          | rani         |
++--------+-----------+------------+------------+------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select *from restaurants;
++-------+----------+-------------------------+------------+-----------+
+| resid | resname  | resadd                  | rescity    | contactno |
++-------+----------+-------------------------+------------+-----------+
+|  1231 | VinoRes  | 30,crossstreet          | chennai    |    989898 |
+|  1232 | pkRes    | 121,gandhistreet        | bangalore  |    999988 |
+|  1234 | pramiRes | 31/21,rajivstreet       | coimbatore |    990988 |
+|  1235 | pramiRes | 33/21,rajivs 1st street | coimbatore |    990088 |
+|  1236 | shanRes  | 33/21,rajivs 2st street | coimbatore |    900088 |
+|  1237 | ravisres | 1,musjid 2st street     | bangalore  |   7800088 |
++-------+----------+-------------------------+------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> select *from rmenuitems;
++--------+----------------+-----------+--------------+-----------+-------------------------------+--------+
+| menuid | menuname       | menutype  | menucategory | menuprice | menudesc                      | restid |
++--------+----------------+-----------+--------------+-----------+-------------------------------+--------+
+|    121 | idli           | breakfast | veg          |         5 | indian delicious idli         |   1231 |
+|    122 | dosa           | breakfast | veg          |        25 | indian delicious dosa         |   1232 |
+|    123 | briyani        | lunch     | veg          |       100 | it is available in many types |   1234 |
+|    124 | chickenbriyani | lunch     | veg          |       100 | it is available in many types |   1235 |
+|    125 | chapathi       | breakfast | veg          |        50 | it is available in many types |   1236 |
+|    126 | poori          | breakfast | veg          |        75 | it is available in many types |   1237 |
++--------+----------------+-----------+--------------+-----------+-------------------------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select *from orders;
++---------+-------------+---------------+--------+
+| orderid | deliveryadd | orderstatus   | custid |
++---------+-------------+---------------+--------+
+|     567 | erode       | delivered     |   3451 |
+|     568 | chennai     | not delivered |   3452 |
+|     569 | coimbatore  | not delivered |   3453 |
++---------+-------------+---------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select *from ordermenus;
++---------+-----------+---------+--------+
+| menuqty | menuprice | orderid | menuid |
++---------+-----------+---------+--------+
+|       2 |       150 |     567 |    121 |
+|       5 |       300 |     568 |    122 |
+|      10 |      1500 |     569 |    123 |
++---------+-----------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT restaurants.city FROM restaurants;
+ERROR 1054 (42S22): Unknown column 'restaurants.city' in 'field list'
+mysql> SELECT DISTINCT restaurants.rescity FROM restaurants;
++------------+
+| rescity    |
++------------+
+| chennai    |
+| bangalore  |
+| coimbatore |
++------------+
+3 rows in set (0.00 sec)
+
+mysql> select from restaurants left join rmenuitems;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from restaurants left join rmenuitems' at line 1
+mysql> select * from restaurants left join rmenuitems;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select * from restaurants left join ordermenus;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select restaurants.resid,restaurants resname LEFT JOIN  rmenuitems.menuid, rmenuitems menuname, rmenuitems menuprice;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LEFT JOIN  rmenuitems.menuid, rmenuitems menuname, rmenuitems menuprice' at line 1
+mysql> select restaurants.resid,restaurants.resname inner join  rmenuitems.menuid, rmenuitems menuname, rmenuitems menuprice;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'inner join  rmenuitems.menuid, rmenuitems menuname, rmenuitems menuprice' at line 1
+mysql> select restaurants.resid,restaurants.resname from restaurants inner join  rmenuitems on  rmenuitems.menuid, rmenuitems menuname, rmenuitems menuprice;
++-------+----------+
+| resid | resname  |
++-------+----------+
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1231 | VinoRes  |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1232 | pkRes    |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1234 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1235 | pramiRes |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1236 | shanRes  |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
+|  1237 | ravisres |
++-------+----------+
+1296 rows in set (0.00 sec)
+
+mysql>
