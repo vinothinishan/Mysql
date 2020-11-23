@@ -1,0 +1,1442 @@
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 31
+Server version: 8.0.20 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> create database employee;
+Query OK, 1 row affected (0.22 sec)
+
+
+mysql> USE employee
+Database changed
+
+mysql> create table emp(eid int,ename varchar(70),eadd varchar(10),esal float);
+Query OK, 0 rows affected (1.77 sec)
+
+mysql> drop table emp;
+Query OK, 0 rows affected (0.55 sec)
+
+mysql> use employee
+Database changed
+
+mysql> create table employee1(empid int,empname varchar(20),empaddress varchar(20),empsalary float);
+Query OK, 0 rows affected (2.15 sec)
+
+mysql> insert into employee1(empid,empname,empaddress,empsalary)values(450,'Saro','tirupur',25000);
+Query OK, 1 row affected (0.18 sec)
+
+mysql> insert into employee1(empid,empname,empaddress,empsalary)values(460,'shalini','coimbatre',50000);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into employee1(empid,empname,empaddress,empsalary)values(470,'yashini','chennai',26000);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into employee1(empid,empname,empaddress,empsalary)values(480,'lakshana','bangalore',80000);
+Query OK, 1 row affected (0.18 sec)
+
+mysql> insert into employee1(empid,empname,empaddress,empsalary)values(490,'akila','coimbatore',20000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from employee1;
++-------+----------+------------+-----------+
+| empid | empname  | empaddress | empsalary |
++-------+----------+------------+-----------+
+|   450  | Saro           | tirupur         |     25000 |
+|   460  | shalini        | coimbatre    |     50000 |
+|   470  | yashini       | chennai        |     26000 |
+|   480  | lakshana     | bangalore     |     80000 |
+|   490  | akila           | coimbatore   |     20000 |
++-------+----------+------------+-----------+
+5 rows in set (0.10 sec)
+
+mysql> create table permanentemployee(empid int,empname varchar(20),empaddress varchar(20),empsalary float,empexp int,emprole varchar(20));
+Query OK, 0 rows affected (1.86 sec)
+
+mysql> insert into permanentemployee(empid,empname,empaddress,empsalary,empexp,emprole)values(210,'aadhav','coimbatore',60000,8,'HR');
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into permanentemployee(empid,empname,empaddress,empsalary,empexp,emprole)values(220,'nandhini','chennai',80000,10,'team lead');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into permanentemployee(empid,empname,empaddress,empsalary,empexp,emprole)values(230,'krithiga','bagalore',40000,6,'engineer');
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into permanentemployee(empid,empname,empaddress,empsalary,empexp,emprole)values(240,'aadhvik','coimbatore',30000,3,'analyst');
+Query OK, 1 row affected (0.24 sec)
+
+mysql> insert into permanentemployee(empid,empname,empaddress,empsalary,empexp,emprole)values(250,'aaradhana','mumbai',60000,4,'developer');
+Query OK, 1 row affected (0.20 sec)
+
+mysql> select * from permanentemployee;
++-------+-----------+------------+-----------+--------+-----------+
+| empid | empname   | empaddress | empsalary | empexp | emprole   |
++-------+-----------+------------+-----------+--------+-----------+
+|   210 | aadhav     | coimbatore |     60000 |      8  | HR           |
+|   220 | nandhini  | chennai       |     80000 |     10 | team lead |
+|   230 | krithiga    | bagalore      |     40000 |      6  | engineer  |
+|   240 | aadhvik    | coimbatore  |     30000 |      3 | analyst     |
+|   250 | aaradhana | mumbai      |     60000 |      4  | developer |
++-------+-----------+------------+-----------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employee1 modify empid int primary key;
+Query OK, 0 rows affected (3.35 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into employee1(empid,empname,empaddress,empsalary)values(250,'aaradhana','mumbai',60000);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into employee1(empid,empname,empaddress,empsalary)values(230,'krithiga','bagalore',40000);
+Query OK, 1 row affected (0.21 sec)
+
+mysql> insert into employee1(empid,empname,empaddress,empsalary)values(220,'nandhini','chennai',80000);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into employee1(empid,empname,empaddress,empsalary)values(240,'aadhvik','coimbatore',30000);
+Query OK, 1 row affected (0.27 sec)
+
+mysql> insert into employee1(empid,empname,empaddress,empsalary)values(210,'aadhav','coimbatore',60000);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> alter table employee1 modify empname varchar(20) not null;
+Query OK, 0 rows affected (3.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table permanentemployee modify empname varchar(20) not null;
+Query OK, 0 rows affected (1.75 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table permanentemployee add foreign key(empid) references employee1(empid);
+Query OK, 5 rows affected (3.42 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> desc employee1;
++------------+-------------+------+-----+---------+-------+
+| Field           | Type             | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| empid         | int                | NO   | PRI | NULL    |       |
+| empname    | varchar(20) | NO   |         | NULL    |       |
+| empaddress | varchar(20) | YES  |         | NULL    |       |
+| empsalary    | float            | YES  |         | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.25 sec)
+
+mysql> desc permanentemployee;
++------------+-------------+------+-----+---------+-------+
+| Field           | Type            | Null | Key  | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| empid         | int               | YES  | MUL | NULL    |       |
+| empname    | varchar(20) | NO   |          | NULL    |       |
+| empaddress | varchar(20) | YES  |          | NULL    |       |
+| empsalary    | float            | YES  |          | NULL    |       |
+| empexp       | int                | YES  |          | NULL    |       |
+| emprole       | varchar(20) | YES  |           | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table permanentemployee alter emprole set default 'employee';
+Query OK, 0 rows affected (0.26 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc permanentemployee;
++------------+-------------+------+-----+----------+-------+
+| Field            | Type             | Null | Key | Default  | Extra |
++------------+-------------+------+-----+----------+-------+
+| empid          | int               | YES  | MUL | NULL     |       |
+| empname    | varchar(20) | NO   |           | NULL     |       |
+| empaddress | varchar(20) | YES  |           | NULL     |       |
+| empsalary    | float            | YES  |           | NULL     |       |
+| empexp        | int               | YES  |           | NULL     |       |
+| emprole       | varchar(20) | YES  |           | employee |       |
++------------+-------------+------+-----+----------+-------+
+6 rows in set (0.13 sec)
+
+mysql> alter table permanentemployee add check(empsalary>0);
+Query OK, 5 rows affected (2.65 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> desc permanentemployee;
++------------+-------------+------+-----+----------+-------+
+| Field           | Type            | Null | Key   | Default  | Extra |
++------------+-------------+------+-----+----------+-------+
+| empid          | int              | YES  | MUL | NULL     |       |
+| empname    | varchar(20) | NO   |          | NULL     |       |
+| empaddress | varchar(20) | YES  |         | NULL     |       |
+| empsalary    | float            | YES  |         | NULL     |       |
+| empexp        | int               | YES  |         | NULL     |       |
+| emprole       | varchar(20) | YES  |         | employee |       |
++------------+-------------+------+-----+----------+-------+
+6 rows in set (0.21 sec)
+
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database employee;
+ERROR 1007 (HY000): Can't create database 'employee'; database exists
+mysql>  USE employee
+Database changed
+mysql> select ASCII(empname)AS Asciiname from employee1;
++-----------+
+| Asciiname |
++-----------+
+|        97 |
+|       110 |
+|       107 |
+|        97 |
+|        97 |
+|        83 |
+|       115 |
+|       121 |
+|       108 |
+|        97 |
++-----------+
+10 rows in set (1.76 sec)
+
+mysql> select BIN(empname)AS Binname from employee1;
++---------+
+| Binname |
++---------+
+| 0       |
+| 0       |
+| 0       |
+| 0       |
+| 0       |
+| 0       |
+| 0       |
+| 0       |
+| 0       |
+| 0       |
++---------+
+10 rows in set, 10 warnings (0.00 sec)
+
+mysql> select bin(111);
++----------+
+| bin(111) |
++----------+
+| 1101111  |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select bin(2);
++--------+
+| bin(2) |
++--------+
+| 10     |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select bin(8);
++--------+
+| bin(8) |
++--------+
+| 1000   |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select bitlength("SVinothiniShanmugam") as myname;
+ERROR 1305 (42000): FUNCTION employee.bitlength does not exist
+mysql> select BIT_LENGTH("SVinothiniShanmugam") as myname;
++--------+
+| myname |
++--------+
+|    152 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select BIT_LENGTH("vino") as myname;
++--------+
+| myname |
++--------+
+|     32 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select BIT_LENGTH(empname) as blenname from permanentemployee;
++----------+
+| blenname |
++----------+
+|       48 |
+|       64 |
+|       64 |
+|       56 |
+|       72 |
++----------+
+5 rows in set (0.13 sec)
+
+mysql> select CHAR_LENGTH(empname) as Charlenname from permanentemployee;
++-------------+
+| Charlenname |
++-------------+
+|           6 |
+|           8 |
+|           8 |
+|           7 |
+|           9 |
++-------------+
+5 rows in set (0.00 sec)
+
+mysql> select CHAR(empsalary) as Charlenname from permanentemployee;
++--------------------------+
+| Charlenname              |
++--------------------------+
+| 0xEA60                   |
+| 0x013880                 |
+| 0x9C40                   |
+| 0x7530                   |
+| 0xEA60                   |
++--------------------------+
+5 rows in set (0.03 sec)
+
+mysql> select CONCAT_WS(empid,"-",empname) as empdetails from permanentemployee;
++---------------+
+| empdetails    |
++---------------+
+| -210aadhav    |
+| -220nandhini  |
+| -230krithiga  |
+| -240aadhvik   |
+| -250aaradhana |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> select CONCAT_WS(empid,-,empname) as empdetails from permanentemployee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',empname) as empdetails from permanentemployee' at line 1
+mysql> select CONCAT_WS(empid,empname) as empdetails from permanentemployee;
++------------+
+| empdetails |
++------------+
+| aadhav     |
+| nandhini   |
+| krithiga   |
+| aadhvik    |
+| aaradhana  |
++------------+
+5 rows in set (0.00 sec)
+
+mysql> select CONCAT_WS(" ",empid,empname) as empdetails from permanentemployee;
++---------------+
+| empdetails    |
++---------------+
+| 210 aadhav    |
+| 220 nandhini  |
+| 230 krithiga  |
+| 240 aadhvik   |
+| 250 aaradhana |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> select CONCAT_WS("-",empid,empname) as empdetails from permanentemployee;
++---------------+
+| empdetails    |
++---------------+
+| 210-aadhav    |
+| 220-nandhini  |
+| 230-krithiga  |
+| 240-aadhvik   |
+| 250-aaradhana |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> select CONCAT(empid,empname) as empdetails from permanentemployee;
++--------------+
+| empdetails   |
++--------------+
+| 210aadhav    |
+| 220nandhini  |
+| 230krithiga  |
+| 240aadhvik   |
+| 250aaradhana |
++--------------+
+5 rows in set (0.00 sec)
+
+mysql> select elt(3,empaddress) as empdetails from employee1;
++------------+
+| empdetails |
++------------+
+| NULL       |
+| NULL       |
+| NULL       |
+| NULL       |
+| NULL       |
+| NULL       |
+| NULL       |
+| NULL       |
+| NULL       |
+| NULL       |
++------------+
+10 rows in set (0.00 sec)
+
+mysql> select elt(3,'i','am','learning','mysq') as eltstring;
++-----------+
+| eltstring |
++-----------+
+| learning  |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select EXPORT_SET(empaddress) as empdetails from employee1;
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'EXPORT_SET'
+mysql> select EXPORT_SET(5,'A','B','C','D','E');
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'EXPORT_SET'
+mysql> select EXPORT_SET(5,'A','B',',',4);
++-----------------------------+
+| EXPORT_SET(5,'A','B',',',4) |
++-----------------------------+
+| A,B,A,B                     |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select EXPORT_SET(5,'I','T',',.,10);
+    '> select EXPORT_SET(5,'I','T',',.,10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '','T',',.,10)' at line 2
+mysql> select EXPORT_SET(5,'I','T',',.,10);
+    '> ;
+    '> select EXPORT_SET(5,'I','T',',.,10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '','T',',.,10)' at line 3
+mysql> select EXPORT_SET(5,'I','T',*,10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*,10)' at line 1
+mysql> select EXPORT_SET(5,'I','T','*',10);
++------------------------------+
+| EXPORT_SET(5,'I','T','*',10) |
++------------------------------+
+| I*T*I*T*T*T*T*T*T*T          |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select EXPORT_SET(3,'1','0','*',10);
++------------------------------+
+| EXPORT_SET(3,'1','0','*',10) |
++------------------------------+
+| 1*1*0*0*0*0*0*0*0*0          |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select FIELD("A","P","A","v","I","T","H","R","a");
++--------------------------------------------+
+| FIELD("A","P","A","v","I","T","H","R","a") |
++--------------------------------------------+
+|                                          2 |
++--------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select FIELD("A","P","a","v","I","T","H","R","A");
++--------------------------------------------+
+| FIELD("A","P","a","v","I","T","H","R","A") |
++--------------------------------------------+
+|                                          2 |
++--------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select FIND_IN_SET("A","P","a","v","I","T","H","R","A");
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'FIND_IN_SET'
+mysql> select FIND_IN_SET("A","h,e,l,l,o,h,o,w,a,r,e,y,o,u");
++------------------------------------------------+
+| FIND_IN_SET("A","h,e,l,l,o,h,o,w,a,r,e,y,o,u") |
++------------------------------------------------+
+|                                              9 |
++------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select FORMAT(225369.458726,5);
++-------------------------+
+| FORMAT(225369.458726,5) |
++-------------------------+
+| 225,369.45873           |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select HEX(225.457);
++--------------+
+| HEX(225.457) |
++--------------+
+| E1           |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO employee1(empid,empname,empaddress,empsalary)VALUES(500,'gayu','pune',55000);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> select * from employee1;
++-------+-----------+------------+-----------+
+| empid | empname   | empaddress | empsalary |
++-------+-----------+------------+-----------+
+|   210 | aadhav    | coimbatore |     60000 |
+|   220 | nandhini  | chennai    |     80000 |
+|   230 | krithiga  | bagalore   |     40000 |
+|   240 | aadhvik   | coimbatore |     30000 |
+|   250 | aaradhana | mumbai     |     60000 |
+|   450 | Saro      | tirupur    |     25000 |
+|   460 | shalini   | coimbatre  |     50000 |
+|   470 | yashini   | chennai    |     26000 |
+|   480 | lakshana  | bangalore  |     80000 |
+|   490 | akila     | coimbatore |     20000 |
+|   500 | gayu      | pune       |     55000 |
++-------+-----------+------------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> INSTR('mystring','my');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSTR('mystring','my')' at line 1
+mysql> select INSTR('mystring','my');
++------------------------+
+| INSTR('mystring','my') |
++------------------------+
+|                      1 |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> select LCASE(emprole)as LowercaseRole from permanentemployee;
++---------------+
+| LowercaseRole |
++---------------+
+| hr            |
+| team lead     |
+| engineer      |
+| analyst       |
+| developer     |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> select LEFT("destination",3) as leftstring;
++------------+
+| leftstring |
++------------+
+| des        |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select LEFT("destination") as length;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') as length' at line 1
+mysql> select LENGTH("destination") as length;
++--------+
+| length |
++--------+
+|     11 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee1 WHERE empname LIKE S%;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%' at line 1
+mysql> select * from employee1 WHERE empname LIKE 'S%';
++-------+---------+------------+-----------+
+| empid | empname | empaddress | empsalary |
++-------+---------+------------+-----------+
+|   450 | Saro    | tirupur    |     25000 |
+|   460 | shalini | coimbatre  |     50000 |
++-------+---------+------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> update employee1 set empphoto = LOAD_FILE('C:\Users\vinothini\Desktop\vinothini.png')where empid=450;
+ERROR 1054 (42S22): Unknown column 'empphoto' in 'field list'
+mysql> alter table employee1 add empphotos mediumblob;
+Query OK, 0 rows affected (1.31 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update employee1 set empphoto = LOAD_FILE('C:\Users\vinothini\Desktop\vinothini.png')where empid=450;
+ERROR 1054 (42S22): Unknown column 'empphoto' in 'field list'
+mysql> update employee1 set empphotos = LOAD_FILE(C:\Users\vinothini\Desktop\vinothini.png')where empid=450;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select * from employee1;
++-------+-----------+------------+-----------+----------------------+
+| empid | empname   | empaddress | empsalary | empphotos            |
++-------+-----------+------------+-----------+----------------------+
+|   210 | aadhav    | coimbatore |     60000 | 0x                   |
+|   220 | nandhini  | chennai    |     80000 | 0x                   |
+|   230 | krithiga  | bagalore   |     40000 | 0x                   |
+|   240 | aadhvik   | coimbatore |     30000 | 0x                   |
+|   250 | aaradhana | mumbai     |     60000 | 0x                   |
+|   450 | Saro      | tirupur    |     25000 | 0x                   |
+|   460 | shalini   | coimbatre  |     50000 | 0x                   |
+|   470 | yashini   | chennai    |     26000 | 0x                   |
+|   480 | lakshana  | bangalore  |     80000 | 0x                   |
+|   490 | akila     | coimbatore |     20000 | 0x                   |
+|   500 | gayu      | pune       |     55000 | 0x                   |
++-------+-----------+------------+-----------+----------------------+
+11 rows in set (0.00 sec)
+
+mysql> select LOCATE('12','welcome123');
++---------------------------+
+| LOCATE('12','welcome123') |
++---------------------------+
+|                         8 |
++---------------------------+
+1 row in set (0.10 sec)
+
+mysql> select LOWER('HELLOHI');
++------------------+
+| LOWER('HELLOHI') |
++------------------+
+| hellohi          |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select LPAD('hi',2,'hello');
++----------------------+
+| LPAD('hi',2,'hello') |
++----------------------+
+| hi                   |
++----------------------+
+1 row in set (0.11 sec)
+
+mysql> select LPAD('hiworld',2,'hello');
++---------------------------+
+| LPAD('hiworld',2,'hello') |
++---------------------------+
+| hi                        |
++---------------------------+
+1 row in set (0.00 sec)
+
+mysql> select LPAD('hiworld',6,'hello');
++---------------------------+
+| LPAD('hiworld',6,'hello') |
++---------------------------+
+| hiworl                    |
++---------------------------+
+1 row in set (0.00 sec)
+
+mysql> select LPAD('hiworld',15,'hello');
++----------------------------+
+| LPAD('hiworld',15,'hello') |
++----------------------------+
+| hellohelhiworld            |
++----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select LTRIM('    HelloHi');
++----------------------+
+| LTRIM('    HelloHi') |
++----------------------+
+| HelloHi              |
++----------------------+
+1 row in set (0.00 sec)
+
+
+mysql> select MAKE_SET(1|6,'Hello','hi','this','is','india');
++------------------------------------------------+
+| MAKE_SET(1|6,'Hello','hi','this','is','india') |
++------------------------------------------------+
+| Hello,hi,this                                  |
++------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select MAKE_SET(1|5,'Hello','hi','this','is','india');
++------------------------------------------------+
+| MAKE_SET(1|5,'Hello','hi','this','is','india') |
++------------------------------------------------+
+| Hello,this                                     |
++------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select MAKE_SET(5,'Hello','hi','this','is','india');
++----------------------------------------------+
+| MAKE_SET(5,'Hello','hi','this','is','india') |
++----------------------------------------------+
+| Hello,this                                   |
++----------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select MAKE_SET(3,'Hello','hi','this','is','india');
++----------------------------------------------+
+| MAKE_SET(3,'Hello','hi','this','is','india') |
++----------------------------------------------+
+| Hello,hi                                     |
++----------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> alter table employee1 add fulltext(empname);
+Query OK, 0 rows affected, 1 warning (7.05 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> select empname,empid from employee1 where match (empname)against('shalini');
++---------+-------+
+| empname | empid |
++---------+-------+
+| shalini |   460 |
++---------+-------+
+1 row in set (0.12 sec)
+
+mysql> select MID(empname,2,5)as subname from permanentemployee;
++---------+
+| subname |
++---------+
+| adhav   |
+| andhi   |
+| rithi   |
+| adhvi   |
+| aradh   |
++---------+
+5 rows in set (0.02 sec)
+
+
+mysql> select * from permanentemployee where empname not like'g%';
++-------+-----------+------------+-----------+--------+-----------+
+| empid | empname   | empaddress | empsalary | empexp | emprole   |
++-------+-----------+------------+-----------+--------+-----------+
+|   210 | aadhav    | coimbatore |     60000 |      8 | HR        |
+|   220 | nandhini  | chennai    |     80000 |     10 | team lead |
+|   230 | krithiga  | bagalore   |     40000 |      6 | engineer  |
+|   240 | aadhvik   | coimbatore |     30000 |      3 | analyst   |
+|   250 | aaradhana | mumbai     |     60000 |      4 | developer |
++-------+-----------+------------+-----------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select OCTET_LENGTH("aroraborialis");
++-------------------------------+
+| OCTET_LENGTH("aroraborialis") |
++-------------------------------+
+|                            13 |
++-------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select ord('mysql');
++--------------+
+| ord('mysql') |
++--------------+
+|          109 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select position("tech" in " HCL technologies") as posotion;
++----------+
+| posotion |
++----------+
+|        6 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select QUOTE('hcl''technologies');
++----------------------------+
+| QUOTE('hcl''technologies') |
++----------------------------+
+| 'hcl\'technologies'        |
++----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select repeat ('**-',10);
++--------------------------------+
+| repeat ('**-',10)              |
++--------------------------------+
+| **-**-**-**-**-**-**-**-**-**- |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select reverse("my sql");
++-------------------+
+| reverse("my sql") |
++-------------------+
+| lqs ym            |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select right("My sql",2) as string;
++--------+
+| string |
++--------+
+| ql     |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select right("My sql",1) as string;
++--------+
+| string |
++--------+
+| l      |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee1 where empname rlike '^s';
++-------+---------+------------+-----------+----------------------+
+| empid | empname | empaddress | empsalary | empphotos            |
++-------+---------+------------+-----------+----------------------+
+|   450 | Saro    | tirupur    |     25000 | 0x                   |
+|   460 | shalini | coimbatre  |     50000 | 0x                   |
++-------+---------+------------+-----------+----------------------+
+2 rows in set (0.01 sec)
+
+mysql> select rpad('sql training',10,'is good');
++-----------------------------------+
+| rpad('sql training',10,'is good') |
++-----------------------------------+
+| sql traini                        |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select rtrim("my sql")as rtrim;
++--------+
+| rtrim  |
++--------+
+| my sql |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select rtrim("my sql     ")as rtrim;
++--------+
+| rtrim  |
++--------+
+| my sql |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select soundex('mysqltraining');
++--------------------------+
+| soundex('mysqltraining') |
++--------------------------+
+| M243652                  |
++--------------------------+
+1 row in set (0.13 sec)
+
+mysql> select *from employee1 where empname sounds like 'saro';
++-------+---------+------------+-----------+----------------------+
+| empid | empname | empaddress | empsalary | empphotos            |
++-------+---------+------------+-----------+----------------------+
+|   450 | Saro    | tirupur    |     25000 | 0x                   |
++-------+---------+------------+-----------+----------------------+
+1 row in set (0.00 sec)
+
+mysql> select space(10);
++------------+
+| space(10)  |
++------------+
+|            |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select strcmp("sql tutorial","sql learning");
++---------------------------------------+
+| strcmp("sql tutorial","sql learning") |
++---------------------------------------+
+|                                     1 |
++---------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select substr("sql training",5,3)as string;
++--------+
+| string |
++--------+
+| tra    |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select trim('    my sql training             ') as remove;
++-----------------+
+| remove          |
++-----------------+
+| my sql training |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select unhex('afdffsfdbfvsjdh4sds7sdf6ds7df6');
++----------------------------------------------------------------------------------+
+| unhex('afdffsfdbfvsjdh4sds7sdf6ds7df6')                                          |
++----------------------------------------------------------------------------------+
+| 0x                                                                               |
++----------------------------------------------------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select ABS(-63.25);
++-------------+
+| ABS(-63.25) |
++-------------+
+|       63.25 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select acos(0.25);
++-------------------+
+| acos(0.25)        |
++-------------------+
+| 1.318116071652818 |
++-------------------+
+1 row in set (0.10 sec)
+
+mysql> select atan2(-3,2);
++--------------------+
+| atan2(-3,2)        |
++--------------------+
+| -0.982793723247329 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select asin(0.50);
++--------------------+
+| asin(0.50)         |
++--------------------+
+| 0.5235987755982989 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select atan(0.50);
++--------------------+
+| atan(0.50)         |
++--------------------+
+| 0.4636476090008061 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select ceil(6.59);
++------------+
+| ceil(6.59) |
++------------+
+|          7 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select ceiling(6.39);
++---------------+
+| ceiling(6.39) |
++---------------+
+|             7 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select conv(6.39,10,2);
++-----------------+
+| conv(6.39,10,2) |
++-----------------+
+| 110             |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select crc32('string');
++-----------------+
+| crc32('string') |
++-----------------+
+|      2663297705 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select degrees(1.562);
++-------------------+
+| degrees(1.562)    |
++-------------------+
+| 89.49600759943459 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select  51.26/3;
++-----------+
+| 51.26/3   |
++-----------+
+| 17.086667 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select 59.369/8;
++-----------+
+| 59.369/8  |
++-----------+
+| 7.4211250 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select exp(3.2);
++--------------------+
+| exp(3.2)           |
++--------------------+
+| 24.532530197109352 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select floor(5.36);
++-------------+
+| floor(5.36) |
++-------------+
+|           5 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select ln(8.54);
++--------------------+
+| ln(8.54)           |
++--------------------+
+| 2.1447610078004784 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select log10(1001);
++-------------------+
+| log10(1001)       |
++-------------------+
+| 3.000434077479319 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select log2(1001);
++-------------------+
+| log2(1001)        |
++-------------------+
+| 9.967226258835993 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select log(11.001);
++--------------------+
+| log(11.001)        |
++--------------------+
+| 2.3979861777572986 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select 89.369-42.547;
++---------------+
+| 89.369-42.547 |
++---------------+
+|        46.822 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select 89.369%52.547;
++---------------+
+| 89.369%52.547 |
++---------------+
+|        36.822 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select oct(1001);
++-----------+
+| oct(1001) |
++-----------+
+| 1751      |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select pi();
++----------+
+| pi()     |
++----------+
+| 3.141593 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select pow(2,3);
++----------+
+| pow(2,3) |
++----------+
+|        8 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select power(53,3);
++-------------+
+| power(53,3) |
++-------------+
+|      148877 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select radians(53);
++--------------------+
+| radians(53)        |
++--------------------+
+| 0.9250245035569946 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select sqrt(53);
++-------------------+
+| sqrt(53)          |
++-------------------+
+| 7.280109889280518 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select 89.369*52.547;
++---------------+
+| 89.369*52.547 |
++---------------+
+|   4696.072843 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select truncate(53,12);
++-----------------+
+| truncate(53,12) |
++-----------------+
+|              53 |
++-----------------+
+1 row in set (0.00 sec)
+
+
+mysql> select adddate("2020-10-20",interval -2 Month);
++-----------------------------------------+
+| adddate("2020-10-20",interval -2 Month) |
++-----------------------------------------+
+| 2020-08-20                              |
++-----------------------------------------+
+1 row in set (0.04 sec)
+
+mysql> select addtime("2020-10-20 09:36:21","2");
++------------------------------------+
+| addtime("2020-10-20 09:36:21","2") |
++------------------------------------+
+| 2020-10-20 09:36:23                |
++------------------------------------+
+1 row in set (0.01 sec)
+
+
+mysql> select convert_tz('2004-01-01 12:00:00','+00:00','+10:00');
++-----------------------------------------------------+
+| convert_tz('2004-01-01 12:00:00','+00:00','+10:00') |
++-----------------------------------------------------+
+| 2004-01-01 22:00:00                                 |
++-----------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select curdate();
++------------+
+| curdate()  |
++------------+
+| 2020-11-22 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select current_date();
++----------------+
+| current_date() |
++----------------+
+| 2020-11-22     |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select current_time();
++----------------+
+| current_time() |
++----------------+
+| 20:40:03       |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add("2020-10-20",interval 2 Month);
++-----------------------------------------+
+| date_add("2020-10-20",interval 2 Month) |
++-----------------------------------------+
+| 2020-12-20                              |
++-----------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select curtime();
++-----------+
+| curtime() |
++-----------+
+| 20:42:15  |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select date_format("2020-06-15", "%Y");
++---------------------------------+
+| date_format("2020-06-15", "%Y") |
++---------------------------------+
+| 2020                            |
++---------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format("2020-06-15", "%M");
++---------------------------------+
+| date_format("2020-06-15", "%M") |
++---------------------------------+
+| June                            |
++---------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select dayname('2020-02-04')dayname;
++---------+
+| dayname |
++---------+
+| Tuesday |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub("2020-10-20",interval 5 Month);
++-----------------------------------------+
+| date_sub("2020-10-20",interval 5 Month) |
++-----------------------------------------+
+| 2020-05-20                              |
++-----------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select datediff("2020-10-20","2015-05-06")as datediff;
++----------+
+| datediff |
++----------+
+|     1994 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select dayname('2020-02-04');
++-----------------------+
+| dayname('2020-02-04') |
++-----------------------+
+| Tuesday               |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select dayofweek('2020-02-04');
++-------------------------+
+| dayofweek('2020-02-04') |
++-------------------------+
+|                       3 |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select dayofmonth('2020-02-04');
++--------------------------+
+| dayofmonth('2020-02-04') |
++--------------------------+
+|                        4 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select dayofyear('2020-02-04');
++-------------------------+
+| dayofyear('2020-02-04') |
++-------------------------+
+|                      35 |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select extract(month from "2018-06-12");
++----------------------------------+
+| extract(month from "2018-06-12") |
++----------------------------------+
+|                                6 |
++----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select from_days(968574);
++-------------------+
+| from_days(968574) |
++-------------------+
+| 2651-11-13        |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select get_format(date,'eur');
++------------------------+
+| get_format(date,'eur') |
++------------------------+
+| %d.%m.%Y               |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> select localtime();
++---------------------+
+| localtime()         |
++---------------------+
+| 2020-11-22 20:53:44 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select localtimestamp();
++---------------------+
+| localtimestamp()    |
++---------------------+
+| 2020-11-22 20:53:53 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> use employee
+Database changed
+
+mysql> select makedate(2019,3);
++------------------+
+| makedate(2019,3) |
++------------------+
+| 2019-01-03       |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select maketime(05,35,4);
++-------------------+
+| maketime(05,35,4) |
++-------------------+
+| 05:35:04          |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select microsecond("2018-05-12 09:00:00.00253");
++------------------------------------------+
+| microsecond("2018-05-12 09:00:00.00253") |
++------------------------------------------+
+|                                     2530 |
++------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select period_add(201103,5);
++----------------------+
+| period_add(201103,5) |
++----------------------+
+|               201108 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select period_diff(201103,5);
++-----------------------+
+| period_diff(201103,5) |
++-----------------------+
+|                   130 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select month("2017-09-30 9:00:35");
++-----------------------------+
+| month("2017-09-30 9:00:35") |
++-----------------------------+
+|                           9 |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select quarter("2017-09-30 9:00:35");
++-------------------------------+
+| quarter("2017-09-30 9:00:35") |
++-------------------------------+
+|                             3 |
++-------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select sec_to_time("2017-09-30 9:00:35");
++-----------------------------------+
+| sec_to_time("2017-09-30 9:00:35") |
++-----------------------------------+
+| 00:33:37.000000                   |
++-----------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select second("2017-09-30 9:00:35");
++------------------------------+
+| second("2017-09-30 9:00:35") |
++------------------------------+
+|                           35 |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select str_to_date("october 26 2020","%M %d %Y");
++-------------------------------------------+
+| str_to_date("october 26 2020","%M %d %Y") |
++-------------------------------------------+
+| 2020-10-26                                |
++-------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select sysdate();
++---------------------+
+| sysdate()           |
++---------------------+
+| 2020-11-22 21:02:59 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select subdate("2020-10-20",interval 5 Month);
++----------------------------------------+
+| subdate("2020-10-20",interval 5 Month) |
++----------------------------------------+
+| 2020-05-20                             |
++----------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select timestamp("2019-09-26","19:00:15");
++------------------------------------+
+| timestamp("2019-09-26","19:00:15") |
++------------------------------------+
+| 2019-09-26 19:00:15                |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select time_format("19:50:15","%h %i %s %p");
++---------------------------------------+
+| time_format("19:50:15","%h %i %s %p") |
++---------------------------------------+
+| 07 50 15 PM                           |
++---------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select timestampadd(month,2,'2010-09-19');
++------------------------------------+
+| timestampadd(month,2,'2010-09-19') |
++------------------------------------+
+| 2010-11-19                         |
++------------------------------------+
+1 row in set (0.00 sec)
+
+
+mysql> select timestampdiff(month,'2009-12-30','2010-09-19');
++------------------------------------------------+
+| timestampdiff(month,'2009-12-30','2010-09-19') |
++------------------------------------------------+
+|                                              8 |
++------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select unix_timestamp();
++------------------+
+| unix_timestamp() |
++------------------+
+|       1606059752 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select utc_date,utc_date();
++------------+------------+
+| utc_date   | utc_date() |
++------------+------------+
+| 2020-11-22 | 2020-11-22 |
++------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select week('2010-09-19');
++--------------------+
+| week('2010-09-19') |
++--------------------+
+|                 38 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select weekday('2010-09-19');
++-----------------------+
+| weekday('2010-09-19') |
++-----------------------+
+|                     6 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select weekofyear('2010-09-19');
++--------------------------+
+| weekofyear('2010-09-19') |
++--------------------------+
+|                       37 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select year('2010-09-19');
++--------------------+
+| year('2010-09-19') |
++--------------------+
+|               2010 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select yearweek('2010-09-19');
++------------------------+
+| yearweek('2010-09-19') |
++------------------------+
+|                 201038 |
++------------------------+
+1 row in set (0.00 sec)
