@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+a[target] {
+  background-color: yellow;
+}
+a[target=_blank] {
+  background-color: red;
+}
+[title~=flower] {
+  border: 5px #66ffff;
+}
+[lang|=en] {
+  background: blue;
+}
+div[class^="test"] {
+  background: #993333;
+}
+div[class$="test"] {
+  background: #66cc33;
+}
+div[class*="test"] {
+  background: #66cc33;
+}
+</style>
+</head>
+<body>
+
+<p>The links with a target attribute gets a yellow background:</p>
+
+<a href="https://www.w3schools.com">w3schools.com</a>
+<a href="http://www.google.com" target="_blank">disney.com</a>
+<a href="http://www.wikipedia.org" target="_top">wikipedia.org</a>
+<a href="http://www.disney.com" target="_blank">disney.com</a>
+<img src="Vinothinipic.jpg" title="flowers" width="224" height="162">
+<p lang="en">Hello!</p>
+<p lang="en-us">Hi!</p>
+<p lang="en-gb">How is this!</p>
+<div class="test">The first div element.</div>
+<div class="test_ex">The second div element.</div>
+<div class="first_test">The first div element.</div>
+<p class="test">This is some text in a paragraph.</p>
+
+</body>
+</html>

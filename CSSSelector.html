@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.intro {
+  background-color: yellow;
+}
+#firstname {
+  background-color: #6633ff;
+}
+* {
+  background-color: blue;
+}
+p.intro {
+  background-color:#663399 ;
+}
+h1, p {
+  background-color: #00ffcc;
+}
+div > p {
+  background-color: #33ff66;
+}
+div + p {
+  background-color: #0099ff;
+}
+p ~ ul {
+  background: #ff0000;
+}
+p::after { 
+  content: " - Remember this";
+}
+p::before {
+  content: "Read this: ";
+}
+input:checked {
+  height: 20px;
+  width: 20px;
+}
+p:empty {
+  background: #6666cc;
+}
+input[type=text]:disabled {
+  background: #dddddd;
+}
+p:first-child {
+  background-color: #009933;
+}
+p::first-letter {
+  font-size: 200%;
+  color: #8A2BE2;
+}
+p::first-line {
+  background-color: #ff3300;
+}
+p:first-of-type {
+  background: red;
+}
+p:lang(it) {
+  background: yellow;
+}
+p:last-child {
+  background: #660066;
+}
+p:last-of-type {
+  background: #66cc66;
+}
+</style>
+</head>
+<body>
+
+<h1>Welcome to My Homepage</h1>
+<p> </p>
+
+<div class="intro">
+  <p>My name is Donald.</p>
+  <p>I live in Duckburg.</p>
+</div>
+
+<p>My best friend is Mickey.</p>
+
+<p class="intro">My best friend is Mickey.</p>
+<div class="some">
+  <p>My name is vicky.</p>
+  <p>I live in USA.</p>
+</div>
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+<form action="">
+  <input type="radio" checked="checked" value="male" name="gender"> Male<br>
+  <input type="radio" value="female" name="gender"> Female<br>
+  <input type="checkbox" checked="checked" value="Bike"> I have a bike<br>
+  <input type="checkbox" value="Car"> I have a car 
+</form>
+<form action="">
+  First name: <input type="text" value="Mickey"><br>
+  Last name: <input type="text" value="Mouse"><br>
+  Country: <input type="text" disabled="disabled" value="Disneyland">
+</form>
+
+
+</body>
+</html>
