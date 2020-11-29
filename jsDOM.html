@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <script>
+    function validateForm()
+    {
+        var m=document.forms[0].elements[0].value;
+        if(m=="" || m==null)
+        {
+            alert("First name cannot be empty");
+            document.forms[0].elements[0].focus();
+        }
+		var n=document.forms[1].elements[1].value;
+        if(n=="" || n==null)
+        {
+            alert("Last name cannot be empty");
+            document.forms[1].elements[1].focus();
+        }
+		var o=document.forms[2].elements[2].value;
+        if(o=="" || o=null)
+        {
+            alert("Mobile number cannot be empty");
+            document.forms[2].elements[2].focus();
+        }
+    }
+	function validateFormeducation()
+    {
+        var m=document.forms[0].elements[0].value;
+        if(m=="" || m==null)
+        {
+            alert("Highest qualification cannot be empty");
+            document.forms[0].elements[0].focus();
+        }
+		var n=document.forms[1].elements[1].value;
+        if(n=="" || n==null)
+        {
+            alert("College Name cannot be empty");
+            document.forms[1].elements[1].focus();
+        }
+    }
+	function validateFormoffice()
+    {
+        var m=document.forms[0].elements[0].value;
+        if(m=="" || m==null)
+        {
+            alert("Organization name cannot be empty");
+            document.forms[0].elements[0].focus();
+        }
+		var n=document.forms[1].elements[1].value;
+        if(n=="" || n==null)
+        {
+            alert("Designation cannot be empty");
+            document.forms[1].elements[1].focus();
+        }
+    }
+  </script>
+ </head>
+ <body>
+
+ 
+
+
+  <form name="personal" action="" method="post" onsubmit="return validateForm()">
+
+ 
+
+  Enter your first Name : <input type="text" name="fname"/><br>
+  Enter your last Name : <input type="text" name="lname"/><br>
+  Enter your mobile no : <input type="text" name="mob"/><br>
+  <input type="submit" value="submit"/><input type="reset" /><br>
+  </form>
+
+ 
+
+  <form name="educational" action="" method="post" onsubmit="return validateFormeducation()">
+  Enter your highest qualification : <input type="text" name="hqual"/><br>
+  Enter your college name : <input type="text" name="colname"/><br>
+	<input type="submit" value="submit"/><input type="reset" /><br>
+  </form>
+
+
+  <form name="office" action="" method="post" onsubmit="return validateFormoffice()">
+  Enter your organization name : <input type="text" name="org"/><br>
+  Enter your designation : <input type="text" name="des"/><br>
+  <input type="submit" value="submit"/><input type="reset" />
+  </form>
+ </body>
+</html>

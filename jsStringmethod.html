@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+var str = "      Hi Hello How are you??      ";
+var str1 = " This is sam";
+document.write( str.length+'<br>');
+document.write( str.indexOf("Hello")+'<br>');
+document.write( str.indexOf("Hello",16)+'<br>');
+//document.write(str.lastindexOf("Hello")+'<br>');
+//document.write(str.lastindexOf("Hello",10)+'<br>');
+document.write(str.search("Hello")+'<br>');
+document.write(str.slice(3,9)+'<br>');
+document.write(str.slice(3)+'<br>');
+document.write(str.slice(-2,-8)+'<br>');
+document.write(str.substring(3, 9)+'<br>');
+document.write(str.substr(3,9)+'<br>');
+document.write(str.replace("you", "you and your family")+'<br>');
+document.write(str.replace(/you/i, "you and your family")+'<br>');
+document.write(str.toUpperCase()+'<br>');
+document.write(str.toLowerCase()+'<br>');
+document.write(str.concat(" ", str1)+'<br>');
+document.write(str.trim()+'<br>');
+//document.write(str.padStart(4,0)+'<br>');
+//document.write(str.padEnd(4,0)+'<br>');
+document.write(str.charAt(0)+'<br>');  
+document.write(str.charCodeAt(0)+'<br>');  
+document.write(str.split(" ")+'<br>');  
+
+
+</script>
+
+</body>
+</html>

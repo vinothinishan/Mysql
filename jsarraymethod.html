@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <script>
+	var fruits = ["Banana", "Orange", "Apple", "Mango"];
+	var arr1 = ["Renu", "Malini"];
+	var arr2 = ["Sundhar", "Selva", "Vinoth"];
+	var arr3 = ["Robin", "Morgan"];
+
+	document.write(fruits.toString()+"<br>");
+	document.write(fruits.join(" * ")+"<br>");
+	document.write(fruits.pop()+"<br>");
+	document.write(fruits.push("Kiwi")+"<br>");
+	document.write(fruits.shift()+"<br>");
+	document.write(fruits.unshift("Lemon")+"<br>");
+	document.write(fruits[0] = "Kiwi"+"<br>"); 
+	document.write(delete fruits[0]+"<br>");
+	document.write(fruits.splice(2, 0, "Lemon", "Kiwi")+"<br>");
+	document.write(arr1.concat(arr2)+"<br>");
+	document.write(arr1.concat(arr2, arr3)+"<br>");
+</script>
+ </body>
+</html>
