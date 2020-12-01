@@ -1,0 +1,18 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE address SYSTEM "address.dtd">
+<addresses>
+<address>
+   <name>Tanmay Patil</name>
+   <company>HCL</company>
+   <phone>(+91) 9965989876</phone>
+   <email>tanmaypatil@gmail.com</email>
+   <dob>23/11/1999</dob>
+</address>
+<address>
+   <name>vinay kumar</name>
+   <company>HCL</company>
+   <phone>(+91) 9965686854</phone>
+   <email>vinaykumar@gmail.com</email>
+   <dob>12/05/1989</dob>
+</address>
+</addresses>

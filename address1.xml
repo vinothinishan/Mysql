@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding = "UTF-8 ?>
+<!DOCTYPE address SYSTEM "address1.dtd">
+<addresses>
+<address>
+   <firstname>Tanmay Patil</firstname>
+   <lastname>T</lastname>
+   <address>187/C Rajiv gandhi street</address>
+   <address>Patel road<address>
+   <address>Chennai<address>
+   <phone>(+91) 9965989876</phone>
+   <email>tanmaypatil@gmail.com</email>
+   <email>tanmaypatil@hcl.com</email>
+    <dob>23/11/1999</dob>
+   <company>HCL</company>
+   <company>HCL Tech</company>
+   <company>https://www.hcltech.com</company>
+</address>
+<address>
+   <firstname>vinay kumar</firstname>
+   <lastname>K</lastname>
+   <address>12/C,1st cross street</address>
+   <address>Patel road<address>
+   <address>Bangalore<address>
+   <phone>(+91) 9945676854</phone>
+   <email>vinaykumar@gmail.com</email>
+   <email>vinaykumar@hcl.com</email>
+   <dob>04/08/1989</dob>
+   <company>HCL</company>
+   <company>HCL Tech</company>
+   <company>https://www.hcltech.com</company>
+   <dob>12/05/1989</dob>
+</address>
+</addresses>

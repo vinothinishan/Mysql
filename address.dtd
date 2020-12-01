@@ -1,0 +1,9 @@
+<!DOCTYPE addresses [
+<!ELEMENT addresses (address)*>
+<!ELEMENT address (name,company,phone,email+,dob)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT company (#PCDATA)>
+<!ELEMENT phone (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT dob (#PCDATA)>
+]>
